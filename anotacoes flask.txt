@@ -1,0 +1,26 @@
+from flask import Flask, jsonify #comunicar com um sistema jsonify
+
+#variavel
+app = Flask(__name__)
+
+#decorador(Atribuir funcionalidade) / rota 
+@app.route('/')
+#função
+def raiz():
+    return '<h1>Hello World<h1>' #(print) 
+
+@app.route('/rota2')
+def rota2():
+    return '<h1>Ohayo sekay good morning World<h1>'
+
+@app.route('/pessoas/<string:nome>/<string:cidade>') #parametro dentro da rota
+def pessoas(nome,cidade): #parametro passado dentro da URL
+    return jsonify ({'nome': nome,'cidade': cidade})
+
+
+app.run(debug=True) #reinicia o servidor e salva edição (debug=True)
+
+
+#route -> TcasT.com/contatos --> o que vem depois do seu dominio.
+#função -> o que você quer exibir em uma página
+#colocar o site no ar (app.run())
